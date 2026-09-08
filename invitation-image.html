@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#000000">
+<title>Invitation</title>
+
+<style>
+
+:root{
+    color-scheme:dark;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+
+    height:100%;
+
+    overflow:hidden;
+
+}
+
+body{
+
+    background:#000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    padding:20px;
+
+}
+
+/* Container */
+
+.container{
+
+    width:100%;
+
+    max-width:900px;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* Image */
+
+.image-container{
+
+    position:relative;
+
+    display:inline-block;
+
+    max-width:100%;
+
+    max-height:100%;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.55);
+
+    filter:brightness(1.15);
+
+}
+
+.image-container img{
+
+    display:block;
+
+    max-width:100%;
+
+    max-height:calc(100vh - 40px);
+
+    width:auto;
+
+    height:auto;
+
+    border-radius:24px;
+
+}
+
+/* Close Button */
+
+.close-button{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    color:#fff;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.3s;
+
+    z-index:10;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.35);
+
+    -webkit-tap-highlight-color:transparent;
+
+    outline:none;
+
+}
+
+.close-button:hover{
+
+    background:rgba(255,255,255,.2);
+
+    transform:scale(1.1);
+
+}
+
+.close-button:active{
+
+    transform:scale(.95);
+
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+    .image-container img{
+
+        max-height:calc(100vh - 20px);
+
+    }
+
+    .close-button{
+
+        width:42px;
+
+        height:42px;
+
+        font-size:24px;
+
+        top:12px;
+
+        right:12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="image-container">
+
+        <button
+            class="close-button"
+            onclick="window.location.href='video.html'">
+            &times;
+        </button>
+
+        <img src="invite_card.jpeg" alt="Invitation">
+
+    </div>
+
+</div>
+
+<script src="music.js"></script>
+<script src="petals.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    window.initBackgroundMusic(false);
+  });
+</script>
+</body>
+</html>
