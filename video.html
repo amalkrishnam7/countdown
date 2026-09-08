@@ -101,146 +101,6 @@ body{
 
 }
 
-.top-buttons{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:142%;
-
-    z-index:10;
-
-    pointer-events:none;
-
-}
-
-.card-btn{
-
-    position:absolute;
-
-    top:9%;
-
-    width:29%;
-    aspect-ratio: 1 / 1.1;
-
-    transform:translate(-50%,-50%);
-
-    border:none;
-    background:transparent;
-
-    color:transparent;
-    font-size:0;
-
-    cursor:pointer;
-
-    pointer-events:auto;
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    -webkit-tap-highlight-color:transparent;
-
-    outline:none;
-
-}
-
-.card-btn:active{
-
-    transform:translate(-50%,-50%) scale(.97);
-
-}
-
-.card-btn.invitation{ left:20%; }
-.card-btn.maps{ left:51%; }
-.card-btn.event-flow{ left:82%; }
-
-.card-btn::before,
-.card-btn::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:6%;
-
-    border-radius:45% 45% 10px 10px / 25% 25% 10px 10px;
-
-    border:1.5px solid rgba(210,235,255,.55);
-
-    box-shadow:0 0 10px 2px rgba(180,220,255,.22) inset;
-
-    animation:idle-ripple 3s ease-out infinite;
-
-    pointer-events:none;
-
-}
-
-.card-btn::after{
-
-    animation-delay:1.5s;
-
-}
-
-@keyframes idle-ripple{
-
-    0%{
-
-        transform:scale(.97);
-        opacity:.8;
-
-    }
-
-    70%{
-
-        opacity:.15;
-
-    }
-
-    100%{
-
-        transform:scale(1.04);
-        opacity:0;
-
-    }
-
-}
-
-.ripple{
-
-    position:absolute;
-
-    border-radius:50%;
-
-    background:radial-gradient(
-        circle,
-        rgba(210,235,255,.55) 0%,
-        rgba(150,210,255,.28) 45%,
-        transparent 75%
-    );
-
-    transform:scale(0);
-
-    pointer-events:none;
-
-    animation:ripple-anim .7s ease-out forwards;
-
-}
-
-@keyframes ripple-anim{
-
-    to{
-
-        transform:scale(1);
-        opacity:0;
-
-    }
-
-}
-
 @keyframes glow{
 
 0%{
@@ -458,16 +318,6 @@ transform:translateX(-50%) scale(.95);
 
     <div class="glow"></div>
 
-    <div class="top-buttons">
-
-        <button class="card-btn invitation" onclick="window.location.href='invitation-image.html'" aria-label="Invitation"></button>
-
-        <button class="card-btn maps" onclick="window.location.href='map_image.html'" aria-label="Maps"></button>
-
-        <button class="card-btn event-flow" onclick="window.location.href='event_image.html'" aria-label="Event Flow"></button>
-
-    </div>
-
     <!-- ==========================================
          COUNTDOWN SECTION
          ========================================== -->
@@ -579,33 +429,6 @@ document.addEventListener("click", function(){
     }
 
 },{once:true});
-
-document.querySelectorAll(".card-btn").forEach(function(btn){
-
-    btn.addEventListener("pointerdown", function(e){
-
-        const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height) * 1.5;
-
-        const x = (e.clientX ?? rect.left + rect.width / 2) - rect.left;
-        const y = (e.clientY ?? rect.top + rect.height / 2) - rect.top;
-
-        const ripple = document.createElement("span");
-        ripple.className = "ripple";
-        ripple.style.width = size + "px";
-        ripple.style.height = size + "px";
-        ripple.style.left = (x - size / 2) + "px";
-        ripple.style.top = (y - size / 2) + "px";
-
-        btn.appendChild(ripple);
-
-        ripple.addEventListener("animationend", function(){
-            ripple.remove();
-        });
-
-    });
-
-});
 
 /*==========================================
     COUNTDOWN CORE ENGINE
