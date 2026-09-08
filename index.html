@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="theme-color" content="#000000">
+
+<title>Holy Baptism Invitation</title>
+
+<style>
+
+:root{
+    /* Nudge these to line up exactly with the OPEN circle
+       printed in your image, then adjust nothing else. */
+    --btn-top:88%;
+    --btn-left:49%;
+    --btn-size:90px;
+    --btn-size-mobile:82px;
+    --line-width:100px;
+    --line-width-mobile:145px;
+    --line-gap:22px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+}
+
+body{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#000;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+}
+
+/* ============================
+   BACKGROUND IMAGE
+============================ */
+
+.background{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:url("front_page.jpeg");
+
+    background-repeat:no-repeat;
+
+    background-position:center center;
+
+    background-size:contain;
+
+    background-color:#000;
+
+    
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.background{
+
+    background-size:cover;
+
+}
+
+}
+
+/* ============================
+   OVERLAY
+============================ */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+        rgba(0,0,0,.08),
+
+        rgba(0,0,0,.2)
+
+    );
+
+}
+
+/* ============================
+   OPEN BUTTON
+============================ */
+.open-btn-wrap{
+
+    position:absolute;
+
+    left:var(--btn-left);
+    top:var(--btn-top);
+    transform:translate(-50%,-50%);
+
+    z-index:10;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+/* Left & Right decorative lines */
+
+.open-btn-wrap::before,
+.open-btn-wrap::after{
+
+    content:"";
+    position:absolute;
+    top:50%;
+    width:var(--line-width);
+    height:3px;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        rgba(255,225,170,1)
+    );
+
+    box-shadow:0 0 8px rgba(255,210,140,.9);
+
+    transform:translateY(-50%);
+}
+
+.open-btn-wrap::before{
+
+    right:100%;
+    margin-right:var(--line-gap);
+
+}
+
+.open-btn-wrap::after{
+
+    left:100%;
+    margin-left:var(--line-gap);
+    transform:translateY(-50%) scaleX(-1);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.open-btn-wrap::before,
+.open-btn-wrap::after{
+
+    width:var(--line-width-mobile);
+
+}
+
+}
+@keyframes glowPulse{
+
+0%,100%{
+
+box-shadow:0 0 14px rgba(255,205,140,.55);
+
+transform:scale(1);
+
+}
+
+50%{
+
+box-shadow:0 0 26px rgba(255,215,150,.9);
+
+transform:scale(1.04);
+
+}
+
+}
+
+.open-btn{
+
+    width:var(--btn-size);
+
+    height:var(--btn-size);
+
+    border-radius:50%;
+
+    background:transparent;
+
+    border:2px solid rgba(255,225,175,.75);
+
+    cursor:pointer;
+
+    animation:glowPulse 2.2s ease-in-out infinite;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+.open-btn:hover{
+
+animation-play-state:paused;
+
+transform:scale(1.08);
+
+box-shadow:0 0 26px rgba(255,215,150,.9);
+
+}
+
+.open-btn:active{
+
+animation-play-state:paused;
+
+transform:scale(.95);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.open-btn{
+
+    width:var(--btn-size-mobile);
+
+    height:var(--btn-size-mobile);
+
+}
+
+.open-btn-wrap{
+
+    top:var(--btn-top);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="overlay"></div>
+
+<div class="open-btn-wrap">
+
+<button
+
+class="open-btn"
+
+aria-label="Open">
+
+</button>
+
+</div>
+
+<script src="music.js"></script>
+<script src="petals.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    window.initBackgroundMusic(true);
+  });
+
+  var hasNavigated = false;
+
+  function goToVideo() {
+    if (hasNavigated) return;
+    hasNavigated = true;
+    window.sessionStorage.setItem('petalFlowActive', '1');
+    window.startPetalAnimation();
+    window.setTimeout(function () {
+      window.location.href = 'video.html';
+    }, 140);
+  }
+
+  document.querySelector('.open-btn').addEventListener('click', function (event) {
+    event.preventDefault();
+    goToVideo();
+  });
+
+  // Auto-open after 20 seconds in case the visitor doesn't notice/click the button
+  window.setTimeout(goToVideo, 10000);
+</script>
+</body>
+
+</html>
